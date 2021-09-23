@@ -15,14 +15,12 @@ import LoadingModal from './../components/common/LoadingModel';
 function TypeIndustryScreen(props) {
 
     const [indicator, showIndicator] = useState(false);
+    const [helpButton, setHelpButton] = useState(true);
 
     const [inputFields, setInputFeilds] = useState([
         {
-            id: 0,
             placeHolder: "Enter Industry Name",
             value: '',
-            secure: false,
-            icon: false
         },
 
     ]);
@@ -39,7 +37,7 @@ function TypeIndustryScreen(props) {
         let tempfeilds = [...inputFields];
 
         if (tempfeilds[0].value === "") {
-            alert("Please fill all the feilds !");
+            alert("Please write atleast one industry name");
             showIndicator(false);
             return true;
         }
@@ -59,80 +57,90 @@ function TypeIndustryScreen(props) {
 
     return (
         <>
-            <KeyboardAvoidingView
+            {/* <KeyboardAvoidingView
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
                 style={{ flex: 1 }}
-            >
-                <Screen style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', backgroundColor: Colors.white }}>
-                    <LoadingModal show={indicator} />
-                    {/* Top Image */}
-                    <ImageBackground style={{ alignItems: 'center', justifyContent: 'center', width: '100%', height: RFPercentage(38) }} source={require('../../assets/Images/top.png')}>
-                        <View style={{ backgroundColor: Colors.white, position: 'absolute', bottom: 0, width: '100%', height: RFPercentage(6), borderTopLeftRadius: RFPercentage(3), borderTopRightRadius: RFPercentage(3) }}>
+            > */}
+            <Screen style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', backgroundColor: Colors.white }}>
+                <LoadingModal show={indicator} />
+                {/* Top Image */}
+                <ImageBackground style={{ alignItems: 'center', justifyContent: 'center', width: '100%', height: RFPercentage(38) }} source={require('../../assets/Images/top.png')}>
+                    <View style={{ backgroundColor: Colors.white, position: 'absolute', bottom: 0, width: '100%', height: RFPercentage(6), borderTopLeftRadius: RFPercentage(3), borderTopRightRadius: RFPercentage(3) }}>
+                    </View>
+                    <View style={{ marginBottom: RFPercentage(6), alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ fontFamily: 'Philosopher_700Bold', color: Colors.white, fontSize: RFPercentage(6.5) }}>
+                            Steer Up
+                        </Text>
+                        <Text style={{ fontWeight: '200', color: "#FFF", fontSize: RFPercentage(2), marginTop: RFPercentage(0.5) }}>
+                            B2B online platform to connect
+                        </Text>
+                        <Text style={{ fontWeight: '200', color: "#FFF", fontSize: RFPercentage(2), marginTop: RFPercentage(0) }}>
+                            businesses Across borders
+                        </Text>
+                    </View>
+                </ImageBackground>
+                {/* Scroll View starts */}
+                <ScrollView style={{ backgroundColor: Colors.white, flex: 1, width: '100%' }} >
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}  >
+                        {/* Main Heading */}
+                        <View style={{ marginTop: RFPercentage(6), flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                            <FontAwesome name="industry" style={{ right: RFPercentage(2), fontSize: RFPercentage(2.8), color: '#025e6c' }} color="black" />
+                            <Text style={{ fontSize: RFPercentage(3.9) }}>
+                                Type Your Industry
+                            </Text>
                         </View>
-                        <View style={{ marginBottom: RFPercentage(6), alignItems: 'center', justifyContent: 'center' }}>
-                            <Text style={{ fontFamily: 'Philosopher_700Bold', color: Colors.white, fontSize: RFPercentage(6.5) }}>
-                                Steer Up
-                            </Text>
-                            <Text style={{ fontWeight: '200', color: "#FFF", fontSize: RFPercentage(2), marginTop: RFPercentage(0.5) }}>
-                                B2B online platform to connect
-                            </Text>
-                            <Text style={{ fontWeight: '200', color: "#FFF", fontSize: RFPercentage(2), marginTop: RFPercentage(0) }}>
-                                businesses Across borders
-                            </Text>
-                        </View>
-                    </ImageBackground>
-                    {/* Scroll View starts */}
-                    <ScrollView style={{ backgroundColor: Colors.white, flex: 1, width: '100%' }} >
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }}  >
-
-                            {/* Main Heading */}
-                            <View style={{ marginTop: RFPercentage(10), flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-                                <FontAwesome name="industry" style={{ right: RFPercentage(2), fontSize: RFPercentage(2.8), color: '#025e6c' }} color="black" />
-                                <Text style={{ fontSize: RFPercentage(3.9) }}>
-                                    Type Your Industry
-                                </Text>
-                            </View>
-
+                        <KeyboardAvoidingView
+                            behavior={Platform.OS === "ios" ? "padding" : "height"}
+                            style={{ flex: 1 }}
+                        >
                             {/* Input Fields */}
                             <View style={{ width: "80%", justifyContent: "center", alignItems: "center", marginTop: RFPercentage(8) }}>
                                 {inputFields.map((item, i) =>
                                     <View key={i} style={{ marginTop: i == 0 ? RFPercentage(1) : RFPercentage(3), width: "100%" }} >
                                         <InputField
-                                            backgroundColor={Colors.light}
-                                            placeHolder={item.placeHolder}
-                                            width="100%"
-                                            height={RFPercentage(6.3)}
+                                            placeholder={item.placeHolder}
+                                            backgroundColor={Colors.inputFieldBackgroundColor}
+                                            placeholderColor={"#82867D"}
+                                            onTouchStart={() => setHelpButton(false)}
+                                            onTouchEnd={() => setHelpButton(true)}
+                                            borderColor={Colors.white}
+                                            borderRadius={RFPercentage(1)}
+                                            fontSize={RFPercentage(2)}
+                                            handleFeild={(text) => handleChange(text, i)}
                                             value={item.value}
-                                            onChange={(text) => handleChange(text, item.id)}
-                                            secure={item.secure}
-                                            icon={item.icon}
+                                            width={"100%"}
                                         />
                                     </View>
                                 )}
                             </View>
-                            {/* Button */}
-                            <View style={{ width: "100%", justifyContent: 'center', alignItems: "center", marginTop: RFPercentage(4) }}>
-                                <MyAppButton
-                                    title="SEARCH"
-                                    bold={true}
-                                    borderRadius={RFPercentage(2)}
-                                    padding={RFPercentage(1.5)}
-                                    onPress={() => handleLogin()}
-                                    backgroundColor={"#12424a"}
-                                    color={Colors.white}
-                                    width={"55%"}
-                                />
-                            </View>
-
+                        </KeyboardAvoidingView>
+                        {/* Button */}
+                        <View style={{ width: "100%", justifyContent: 'center', alignItems: "center", marginTop: RFPercentage(4) }}>
+                            <MyAppButton
+                                title="SEARCH"
+                                bold={true}
+                                borderRadius={RFPercentage(2)}
+                                padding={RFPercentage(1.5)}
+                                onPress={() => handleLogin()}
+                                backgroundColor={Colors.secondary}
+                                color={Colors.white}
+                                width={"55%"}
+                            />
                         </View>
-                    </ScrollView>
+
+                    </View>
+                </ScrollView>
+                {helpButton ?
                     <TouchableOpacity style={{ width: '100%' }}>
-                        <View style={{ position: 'absolute', bottom: RFPercentage(1.5), right: RFPercentage(2) }} >
-                            <Text style={{ color: '#12424a' }}>Documentation For Help</Text>
+                        <View style={{ position: 'absolute', bottom: RFPercentage(2), right: RFPercentage(3) }} >
+                            <Text style={{ color: '#12424a', fontSize: RFPercentage(2.1) }}>Documentation For Help</Text>
                         </View>
                     </TouchableOpacity>
-                </Screen>
-            </KeyboardAvoidingView>
+                    :
+                    null
+                }
+            </Screen>
+            {/* </KeyboardAvoidingView> */}
         </>
     );
 }

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Text, View, ImageBackground, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import { Octicons } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
 
 //components
 import Screen from './../components/Screen';
@@ -10,44 +9,19 @@ import Screen from './../components/Screen';
 //config
 import Colors from '../config/Colors';
 
-function EmergingMarketsScreen(props) {
+function AvailableOptionsScreen(props) {
 
+    const data = [
+        {
+            mainTitle: 'Domestic Agents',
+            subTitle: '(Export broker, agents, Sales Representatives, EMC, Coorporative Exporter, Purchasing/Buying agents)'
+        },
+        {
+            mainTitle: 'Domestic Merchants',
+            subTitle: '(Exporter, Shipper, Distributor,Trading Company)'
+        },
 
-    const [listData, setListData] = useState([
-        {
-            listTitle: 'India',
-
-        },
-        {
-            listTitle: 'Pakistan',
-
-        },
-        {
-            listTitle: 'America',
-
-        },
-        {
-            listTitle: 'China',
-
-        },
-        {
-            listTitle: 'Jappan',
-
-        },
-        {
-            listTitle: 'Russia',
-        },
-        {
-            listTitle: 'UK',
-        },
-        {
-            listTitle: 'Newzeland',
-        },
-        {
-            listTitle: 'Canada',
-        },
-    ])
-
+    ]
 
     return (
         <>
@@ -74,31 +48,28 @@ function EmergingMarketsScreen(props) {
                     </ImageBackground>
                     {/* Main Heading */}
                     <View style={{ marginTop: RFPercentage(0), justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-                        {/* <FontAwesome name="industry" style={{ marginRight: RFPercentage(2), fontSize: RFPercentage(2.8), color: '#025e6c' }} color="black" /> */}
                         <Text style={{ fontSize: RFPercentage(3.4) }}>
-                            Emerging markets lists (BRICS)
-                        </Text>
-                        <Text style={{ fontSize: RFPercentage(3.2) }}>
-
+                            List of  available options:
                         </Text>
                     </View>
                     {/* Scroll View starts */}
                     <ScrollView style={{ backgroundColor: Colors.white, flex: 1, width: '100%' }} >
                         {/* List */}
-                        {listData.map((item, i) => (
-                            <TouchableOpacity key={i} style={{ marginLeft: RFPercentage(6), flexDirection: 'row', alignItems: "center", justifyContent: 'flex-start' }}>
-                                <View style={{ width: '100%', alignItems: 'flex-start', justifyContent: 'flex-start', marginRight: RFPercentage(20) }}>
-                                    <TouchableOpacity onPress={() => props.navigation.navigate("ChooseEntryModeScreen")} style={{ height: RFPercentage(6), width: '100%', flexDirection: 'row', marginTop: i === 0 ? RFPercentage(5) : RFPercentage(3), justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        <Octicons name="primitive-dot" style={{ fontSize: RFPercentage(3), marginRight: RFPercentage(2) }} color={Colors.secondary} />
-                                        <Text style={{ color: Colors.black, fontSize: RFPercentage(2.7) }}>
-                                            {item.listTitle}
-                                        </Text>
-                                        {/* <Ionicons name="checkmark-circle" style={{ fontSize: RFPercentage(3), position: 'absolute', right: RFPercentage(2) }} color={Colors.primary} /> */}
-                                    </TouchableOpacity>
+                        {data.map((item, i) => (
+                            <View key={i} style={{ width: '100%', justifyContent: 'center', alignItems: 'center', marginTop: RFPercentage(5) }}>
+                                <TouchableOpacity onPress={() => props.navigation.navigate("AgreementTypeScreen")} style={{ width: '80%', flexDirection: 'row', alignItems: "center", justifyContent: 'flex-start' }}>
+                                    <Octicons name="primitive-dot" style={{ fontSize: RFPercentage(3), marginRight: RFPercentage(2) }} color={Colors.secondary} />
+                                    <Text style={{ fontSize: RFPercentage(2.8) }}>
+                                        {item.mainTitle}
+                                    </Text>
+                                </TouchableOpacity>
+                                <View style={{ width: '80%', alignItems: "center", justifyContent: 'flex-start', marginLeft: RFPercentage(3) }}>
+                                    <Text style={{ fontSize: RFPercentage(1.7) }}>
+                                        {item.subTitle}
+                                    </Text>
                                 </View>
-                            </TouchableOpacity>
+                            </View>
                         ))}
-                        <View style={{ marginBottom: RFPercentage(15) }}></View>
                     </ScrollView>
                     {/* Bottom right text button for help */}
                     <TouchableOpacity style={{ position: 'absolute', bottom: RFPercentage(1.5), right: RFPercentage(2) }} >
@@ -110,4 +81,4 @@ function EmergingMarketsScreen(props) {
     );
 }
 
-export default EmergingMarketsScreen;
+export default AvailableOptionsScreen;
