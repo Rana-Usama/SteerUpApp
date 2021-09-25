@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, ImageBackground, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
+import { Text, View, TouchableOpacity, StatusBar } from 'react-native';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import ReactNativeCrossPicker from "react-native-cross-picker";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -8,7 +8,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Screen from './../components/Screen';
 import MyAppButton from './../components/common/MyAppButton';
 import MyAppbar from '../components/common/MyAppbar';
-import HelpButton from '../components/common/HelpButton';
 
 //config
 import Colors from '../config/Colors';
@@ -78,7 +77,9 @@ function ChooseEntryModeScreen(props) {
             </View>
 
             {/* Bottom right text button for help */}
-            <HelpButton />
+            <TouchableOpacity style={{ position: 'absolute', bottom: RFPercentage(1.5), right: RFPercentage(2) }} >
+                <Text style={{ color: '#12424a' }}>Documentation For Help</Text>
+            </TouchableOpacity>
         </Screen>
 
     );
