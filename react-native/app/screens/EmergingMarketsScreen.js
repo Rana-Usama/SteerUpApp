@@ -75,7 +75,7 @@ function EmergingMarketsScreen(props) {
                         {listData.map((item, i) => (
                             <TouchableOpacity key={i} style={{ marginLeft: RFPercentage(6), flexDirection: 'row', alignItems: "center", justifyContent: 'flex-start' }}>
                                 <View style={{ width: '100%', alignItems: 'flex-start', justifyContent: 'flex-start', marginRight: RFPercentage(20) }}>
-                                    <TouchableOpacity onPress={() => handleCountry(item.country)} style={{ height: RFPercentage(6), width: '100%', flexDirection: 'row', marginTop: i === 0 ? RFPercentage(5) : RFPercentage(3), justifyContent: 'flex-start', alignItems: 'center' }}>
+                                    <TouchableOpacity onPress={() => handleCountry(`${item.country} (${item.latestYearRank})`)} style={{ height: RFPercentage(6), width: '100%', flexDirection: 'row', marginTop: i === 0 ? RFPercentage(5) : RFPercentage(3), justifyContent: 'flex-start', alignItems: 'center' }}>
                                         <Octicons name="primitive-dot" style={{ fontSize: RFPercentage(3), marginRight: RFPercentage(2) }} color={Colors.secondary} />
                                         <Text style={{ color: Colors.black, fontSize: RFPercentage(2.7) }}>
                                             {`${item.country} (${item.latestYearRank})`}
