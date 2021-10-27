@@ -48,9 +48,7 @@ function ResultScreen(props) {
                         <Text style={{ fontSize: RFPercentage(3.4) }}>
                             Result
                         </Text>
-                        <Text style={{ fontSize: RFPercentage(3.2) }}>
 
-                        </Text>
                     </View>
                     {/* Scroll View starts */}
                     <ScrollView style={{ backgroundColor: Colors.white, flex: 1, width: '100%' }} >
@@ -58,6 +56,11 @@ function ResultScreen(props) {
                         {listData.map((item, i) => (
                             <TouchableOpacity key={i} style={{ marginLeft: RFPercentage(6), flexDirection: 'row', alignItems: "center", justifyContent: 'flex-start' }}>
                                 <View style={{ width: '100%', alignItems: 'flex-start', justifyContent: 'flex-start', marginRight: RFPercentage(20) }}>
+                                    {
+                                        item.name === "Country" ? <Text style={{ marginBottom: -RFPercentage(3), marginTop: RFPercentage(2), width: "100%", fontSize: RFPercentage(1.8), color: "grey" }}>
+                                            OECD Model Survey on ICT Access and Usage by Businesses
+                                        </Text> : null
+                                    }
                                     <View style={{ height: RFPercentage(6), width: '100%', flexDirection: 'row', marginTop: i === 0 ? RFPercentage(5) : RFPercentage(3), justifyContent: 'flex-start', alignItems: 'center' }}>
                                         <Octicons name="primitive-dot" style={{ fontSize: RFPercentage(3), marginRight: RFPercentage(2) }} color={Colors.secondary} />
                                         <Text style={{ color: Colors.black, fontSize: RFPercentage(2.7), fontWeight: "bold" }}>

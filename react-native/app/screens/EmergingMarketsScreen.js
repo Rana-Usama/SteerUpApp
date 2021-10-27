@@ -24,6 +24,8 @@ function EmergingMarketsScreen(props) {
         try {
             showIndicator(true)
             let { data: res } = await getIndustryRank();
+            console.log(res)
+
             setListData(res)
         } catch (error) {
             console.log("Country Error: ", error)
@@ -76,7 +78,7 @@ function EmergingMarketsScreen(props) {
                                     <TouchableOpacity onPress={() => handleCountry(item.country)} style={{ height: RFPercentage(6), width: '100%', flexDirection: 'row', marginTop: i === 0 ? RFPercentage(5) : RFPercentage(3), justifyContent: 'flex-start', alignItems: 'center' }}>
                                         <Octicons name="primitive-dot" style={{ fontSize: RFPercentage(3), marginRight: RFPercentage(2) }} color={Colors.secondary} />
                                         <Text style={{ color: Colors.black, fontSize: RFPercentage(2.7) }}>
-                                            {item.country}
+                                            {`${item.country} (${item.latestYearRank})`}
                                         </Text>
                                         {/* <Ionicons name="checkmark-circle" style={{ fontSize: RFPercentage(3), position: 'absolute', right: RFPercentage(2) }} color={Colors.primary} /> */}
                                     </TouchableOpacity>

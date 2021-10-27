@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 
     let cleanedData = []
 
-    for (let i = 1; i < result['OECD.Stat export'].length; i++) {
+    for (let i = 0; i < result['OECD.Stat export'].length; i++) {
         const tempObj = result['OECD.Stat export'][i];
         const lastYearKey = Object.keys(tempObj)[Object.keys(tempObj).length - 1];
         const latestCountryRank = result['OECD.Stat export'][i][lastYearKey];
