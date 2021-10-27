@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-let url = "https://ed9f-111-119-187-4.ngrok.io/api/industryrank";
+let url = "https://23e1-111-68-102-12.ngrok.io/api";
 
 export const getIndustryRank = async () => {
-    return await axios.get(url);
+    return await axios.get(`${url}/industryrank`);
 }
